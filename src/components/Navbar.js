@@ -1,15 +1,67 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const dropdownTimeoutRef = useRef(null);
+
+  const [showNav, setShowNav] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      const scrollThreshold = window.innerHeight * 0.1; // 10% of viewport height
+
+      if (window.scrollY > scrollThreshold) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      if (isOpen) {
+        setShowNav(true);
+        return;
+      }
+      
+      if (window.scrollY > lastScrollY && window.scrollY > scrollThreshold) {
+        setShowNav(false);
+      } else {
+        setShowNav(true);
+      }
+
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+    return () => {
+      window.removeEventListener('scroll', controlNavbar);
+    };
+  }, [lastScrollY, isOpen]);
+
+  const handleLogoClick = (e) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // On other pages, the Link component will handle navigation,
+    // and the ScrollToTop component will scroll to the top.
+  };
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const handleDropdownToggle = (dropdown) => {
-    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+  const handleMouseEnter = (dropdown) => {
+    clearTimeout(dropdownTimeoutRef.current);
+    setActiveDropdown(dropdown);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 200); // 200ms delay
   };
 
   const servicesItems = [
@@ -38,11 +90,11 @@ const Navbar = () => {
   const aboutItems = [
     { name: 'How we work', href: '/about/how-we-work' },
     { name: 'Sustainability', href: '/about/sustainability' },
-    { name: 'Working at Netguru', href: '/about/careers' },
+    { name: 'Working at FreekiWebsite', href: '/about/careers' },
     { name: 'Job opportunities', href: '/about/jobs' },
     { name: 'Contact us', href: '/contact' },
     { name: 'Press Office', href: '/about/press' },
-    { name: 'Refer Netguru', href: '/about/refer' },
+    { name: 'Refer FreekiWebsite', href: '/about/refer' },
   ];
 
   const insightsItems = [
@@ -51,23 +103,24 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-black border-b border-gray-800 sticky top-0 z-50">
+    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ease-in-out ${(isScrolled || isOpen) ? 'bg-black shadow-lg' : 'bg-transparent'} ${showNav ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="container-custom">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-              <span className="text-black font-bold text-lg">N</span>
-            </div>
-            <span className="text-xl font-bold text-white">Netguru</span>
-          </Link>
+        <div className="flex items-center h-16">
+          {/* Left: Logo */}
+          <div className="flex-1 flex items-center justify-start">
+            <Link to="/" className="flex items-center space-x-2" onClick={handleLogoClick}>
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                <span className="font-logo text-black text-lg">F</span>
+              </div>
+              <span className="font-logo text-xl text-white">FreekiWebsite</span>
+            </Link>
+          </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Center: Desktop Navigation */}
+          <div className="hidden lg:flex flex-1 justify-center items-center space-x-8">
             {/* Services Dropdown */}
-            <div className="relative">
+            <div className="relative" onMouseEnter={() => handleMouseEnter('services')} onMouseLeave={handleMouseLeave}>
               <button
-                onClick={() => handleDropdownToggle('services')}
                 className="flex items-center space-x-1 text-white hover:text-gray-300 transition-colors"
               >
                 <span>Services</span>
@@ -80,6 +133,7 @@ const Navbar = () => {
                       key={item.name}
                       to={item.href}
                       className="block px-4 py-2 text-sm text-white hover:bg-gray-900"
+                      onClick={() => setActiveDropdown(null)}
                     >
                       {item.name}
                     </Link>
@@ -89,9 +143,8 @@ const Navbar = () => {
             </div>
 
             {/* Industries Dropdown */}
-            <div className="relative">
+            <div className="relative" onMouseEnter={() => handleMouseEnter('industries')} onMouseLeave={handleMouseLeave}>
               <button
-                onClick={() => handleDropdownToggle('industries')}
                 className="flex items-center space-x-1 text-white hover:text-gray-300 transition-colors"
               >
                 <span>Industries</span>
@@ -104,6 +157,7 @@ const Navbar = () => {
                       key={item.name}
                       to={item.href}
                       className="block px-4 py-2 text-sm text-white hover:bg-gray-900"
+                      onClick={() => setActiveDropdown(null)}
                     >
                       {item.name}
                     </Link>
@@ -113,9 +167,8 @@ const Navbar = () => {
             </div>
 
             {/* Clients Dropdown */}
-            <div className="relative">
+            <div className="relative" onMouseEnter={() => handleMouseEnter('clients')} onMouseLeave={handleMouseLeave}>
               <button
-                onClick={() => handleDropdownToggle('clients')}
                 className="flex items-center space-x-1 text-white hover:text-gray-300 transition-colors"
               >
                 <span>Clients</span>
@@ -128,6 +181,7 @@ const Navbar = () => {
                       key={item.name}
                       to={item.href}
                       className="block px-4 py-2 text-sm text-white hover:bg-gray-900"
+                      onClick={() => setActiveDropdown(null)}
                     >
                       {item.name}
                     </Link>
@@ -137,10 +191,9 @@ const Navbar = () => {
             </div>
 
             {/* About Dropdown */}
-            <div className="relative">
+            <div className="relative" onMouseEnter={() => handleMouseEnter('about')} onMouseLeave={handleMouseLeave}>
               <button
-                onClick={() => handleDropdownToggle('about')}
-                className="flex items-center space-x-1 text-white hover:text-gray-300 transition-colors"
+                className="flex items-center space-x-1 text-white hover:text-gray-300 transition-colors whitespace-nowrap"
               >
                 <span>About us</span>
                 <ChevronDown className="w-4 h-4" />
@@ -152,6 +205,7 @@ const Navbar = () => {
                       key={item.name}
                       to={item.href}
                       className="block px-4 py-2 text-sm text-white hover:bg-gray-900"
+                      onClick={() => setActiveDropdown(null)}
                     >
                       {item.name}
                     </Link>
@@ -161,9 +215,8 @@ const Navbar = () => {
             </div>
 
             {/* Insights Dropdown */}
-            <div className="relative">
+            <div className="relative" onMouseEnter={() => handleMouseEnter('insights')} onMouseLeave={handleMouseLeave}>
               <button
-                onClick={() => handleDropdownToggle('insights')}
                 className="flex items-center space-x-1 text-white hover:text-gray-300 transition-colors"
               >
                 <span>Insights</span>
@@ -176,6 +229,7 @@ const Navbar = () => {
                       key={item.name}
                       to={item.href}
                       className="block px-4 py-2 text-sm text-white hover:bg-gray-900"
+                      onClick={() => setActiveDropdown(null)}
                     >
                       {item.name}
                     </Link>
@@ -183,21 +237,24 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-
-            {/* CTA Button */}
-            <Link to="/contact" className="btn-primary">
-              Get in touch
-            </Link>
           </div>
-
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <button
-              onClick={toggleMenu}
-              className="text-white hover:text-gray-300"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+          
+          {/* Right: CTA Button (Desktop) + Mobile Menu Button */}
+          <div className="flex-1 flex items-center justify-end">
+             <div className="hidden lg:block">
+                <Link to="/contact" className="btn-get-in-touch">
+                  Get in touch
+                </Link>
+             </div>
+            {/* Mobile menu button */}
+            <div className="lg:hidden">
+              <button
+                onClick={toggleMenu}
+                className="text-white hover:text-gray-300"
+              >
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -205,42 +262,12 @@ const Navbar = () => {
         {isOpen && (
           <div className="lg:hidden bg-black border-t border-gray-800">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link
-                to="/services"
-                className="block px-3 py-2 text-white hover:bg-gray-900"
-              >
-                Services
-              </Link>
-              <Link
-                to="/industries"
-                className="block px-3 py-2 text-white hover:bg-gray-900"
-              >
-                Industries
-              </Link>
-              <Link
-                to="/clients"
-                className="block px-3 py-2 text-white hover:bg-gray-900"
-              >
-                Clients
-              </Link>
-              <Link
-                to="/about"
-                className="block px-3 py-2 text-white hover:bg-gray-900"
-              >
-                About us
-              </Link>
-              <Link
-                to="/insights"
-                className="block px-3 py-2 text-white hover:bg-gray-900"
-              >
-                Insights
-              </Link>
-              <Link
-                to="/contact"
-                className="block px-3 py-2 text-white hover:bg-gray-900"
-              >
-                Get in touch
-              </Link>
+              <Link to="/services" className="block px-3 py-2 text-white hover:bg-gray-900">Services</Link>
+              <Link to="/industries" className="block px-3 py-2 text-white hover:bg-gray-900">Industries</Link>
+              <Link to="/clients" className="block px-3 py-2 text-white hover:bg-gray-900">Clients</Link>
+              <Link to="/about" className="block px-3 py-2 text-white hover:bg-gray-900">About us</Link>
+              <Link to="/insights" className="block px-3 py-2 text-white hover:bg-gray-900">Insights</Link>
+              <Link to="/contact" className="block px-3 py-2 text-white hover:bg-gray-900">Get in touch</Link>
             </div>
           </div>
         )}

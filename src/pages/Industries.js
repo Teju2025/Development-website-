@@ -142,14 +142,14 @@ const Industries = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-netguru-light to-white section-padding">
+      <section className="bg-gradient-to-br from-gray-900 to-black section-padding">
         <div className="container-custom">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-netguru-dark mb-6">
-              Industry <span className="gradient-text">Expertise</span>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              Industries We <span className="gradient-text">Serve</span>
             </h1>
-            <p className="text-xl md:text-2xl text-netguru-gray mb-8">
-              We have deep experience across multiple industries, understanding the unique challenges and opportunities each sector presents.
+            <p className="text-xl md:text-2xl text-gray-300 mb-8">
+              We leverage our deep industry knowledge to deliver tailored digital solutions that drive growth and innovation.
             </p>
           </div>
         </div>
@@ -172,54 +172,25 @@ const Industries = () => {
       </section>
 
       {/* Industries Grid */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-black">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {industries.map((industry, index) => (
-              <div key={index} className="group cursor-pointer">
-                <div className="relative overflow-hidden rounded-xl mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {industries.map((industry) => (
+              <div key={industry.title} className="group cursor-pointer bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border border-gray-800">
+                <div className="relative overflow-hidden">
                   <img
                     src={industry.image}
                     alt={industry.title}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                  <div className="absolute top-4 left-4">
-                    <div className="w-12 h-12 bg-netguru-blue rounded-lg flex items-center justify-center">
-                      <industry.icon className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                 </div>
-                
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-netguru-dark group-hover:text-netguru-blue transition-colors">
-                    {industry.title}
-                  </h3>
-                  <p className="text-lg text-netguru-gray">
-                    {industry.description}
-                  </p>
-                  
-                  <ul className="space-y-2">
-                    {industry.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-netguru-gray">
-                        <div className="w-2 h-2 bg-netguru-blue rounded-full mr-3"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="bg-netguru-light p-4 rounded-lg">
-                    <p className="text-sm text-netguru-blue font-semibold mb-1">Case Study</p>
-                    <h4 className="font-semibold text-netguru-dark mb-1">{industry.caseStudy.title}</h4>
-                    <p className="text-sm text-netguru-gray">{industry.caseStudy.result}</p>
-                  </div>
-                  
-                  <Link 
-                    to={`/industries/${industry.title.toLowerCase()}`}
-                    className="inline-flex items-center text-netguru-blue hover:text-blue-600 font-semibold group/link"
-                  >
-                    Learn more
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-white mb-3">{industry.title}</h3>
+                  <p className="text-gray-400 mb-4">{industry.description}</p>
+                  <Link to={`/industries/${industry.title.toLowerCase().replace(/ /g, '-')}`} className="font-semibold text-white hover:text-gray-300 transition-colors inline-flex items-center space-x-2">
+                    <span>Learn more</span>
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>
@@ -259,17 +230,93 @@ const Industries = () => {
         </div>
       </section>
 
+      {/* Case Studies Section */}
+      <section className="section-padding bg-gray-900">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Industry <span className="gradient-text">Success Stories</span>
+            </h2>
+          </div>
+
+          <div className="space-y-16">
+            {industries.map((industry, index) => (
+              <div key={index} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className={`relative overflow-hidden rounded-xl ${index % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                  <img
+                    src={industry.image}
+                    alt={industry.title}
+                    className="w-full h-80 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                </div>
+                
+                <div className={`space-y-6 ${index % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                  <div className="space-y-2">
+                    <p className="text-sm text-white font-semibold">{industry.title}</p>
+                    <h3 className="text-3xl font-bold text-white">{industry.caseStudy.title}</h3>
+                    <p className="text-lg text-gray-300">{industry.caseStudy.result}</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-black p-4 rounded-lg">
+                      <p className="text-2xl font-bold text-white">{industry.features.length}</p>
+                      <p className="text-sm text-gray-400">Features</p>
+                    </div>
+                    <div className="bg-black p-4 rounded-lg">
+                      <p className="text-2xl font-bold text-white">{industry.features[0]}</p>
+                      <p className="text-sm text-gray-400">Main Feature</p>
+                    </div>
+                  </div>
+                  
+                  <Link 
+                    to={`/clients/case-study/${industry.title.toLowerCase().replace(/ /g, '-')}`}
+                    className="btn-primary inline-flex items-center space-x-2"
+                  >
+                    <span>Read full case study</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="section-padding bg-black">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Why Choose <span className="gradient-text">FreekiWebsite</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {industries.map((industry, index) => (
+              <div key={index} className="bg-gray-900 p-8 rounded-xl border border-gray-800">
+                <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center mb-4">
+                  <industry.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">{industry.title}</h3>
+                <p className="text-gray-400">{industry.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-r from-netguru-blue to-blue-600 text-white">
+      <section className="section-padding bg-gradient-to-r from-gray-900 to-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to transform your <span className="text-yellow-300">industry</span>?
+            Let's build the future of your industry, <span className="text-yellow-400">together</span>.
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Let's discuss how our industry expertise can help you stay ahead of the competition.
+            Contact us to learn how our industry expertise can benefit your business.
           </p>
-          <Link to="/contact" className="btn-secondary bg-white text-netguru-blue hover:bg-gray-100 text-lg px-8 py-4">
-            Start a conversation
+          <Link to="/contact" className="btn-get-in-touch">
+            Get in touch
           </Link>
         </div>
       </section>

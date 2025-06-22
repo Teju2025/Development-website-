@@ -23,11 +23,11 @@ const Footer = () => {
     about: [
       { name: 'How we work', href: '/about/how-we-work' },
       { name: 'Sustainability', href: '/about/sustainability' },
-      { name: 'Working at Netguru', href: '/about/careers' },
+      { name: 'Working at FreekiWebsite', href: '/about/careers' },
       { name: 'Job opportunities', href: '/about/jobs' },
       { name: 'Contact us', href: '/contact' },
       { name: 'Press Office', href: '/about/press' },
-      { name: 'Refer Netguru', href: '/about/refer' },
+      { name: 'Refer FreekiWebsite', href: '/about/refer' },
     ],
     insights: [
       { name: 'Blog', href: '/insights/blog' },
@@ -36,11 +36,11 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Linkedin, href: 'https://linkedin.com/company/netguru', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com/netguru', label: 'Twitter' },
-    { icon: Facebook, href: 'https://facebook.com/netguru', label: 'Facebook' },
-    { icon: Instagram, href: 'https://instagram.com/netguru', label: 'Instagram' },
-    { icon: Youtube, href: 'https://youtube.com/netguru', label: 'YouTube' },
+    { icon: Linkedin, href: 'https://linkedin.com/company/freekiwebsite', label: 'LinkedIn' },
+    { icon: Twitter, href: 'https://twitter.com/freekiwebsite', label: 'Twitter' },
+    { icon: Facebook, href: 'https://facebook.com/freekiwebsite', label: 'Facebook' },
+    { icon: Instagram, href: 'https://instagram.com/freekiwebsite', label: 'Instagram' },
+    { icon: Youtube, href: 'https://youtube.com/freekiwebsite', label: 'YouTube' },
   ];
 
   return (
@@ -52,9 +52,9 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
               <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-black font-bold text-lg">N</span>
+                <span className="font-logo text-black text-lg">F</span>
               </div>
-              <span className="text-xl font-bold">Netguru</span>
+              <span className="font-logo text-xl">FreekiWebsite</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
               We speed up AI adoption and ramp up engineering and design teams to help you lead your industry.
@@ -144,7 +144,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-wrap items-center space-x-6 text-sm text-gray-400">
-              <span>&copy; 2024 Netguru. All rights reserved.</span>
+              <span>&copy; 2024 FreekiWebsite. All rights reserved.</span>
               <Link to="/privacy" className="hover:text-white transition-colors">
                 Privacy Policy
               </Link>
@@ -156,7 +156,7 @@ const Footer = () => {
               </Link>
             </div>
             <div className="text-sm text-gray-400">
-              Made with ❤️ in Poland
+              Made with ❤️ in India
             </div>
           </div>
         </div>

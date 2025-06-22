@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Play } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   const trustedBy = [
@@ -60,14 +61,14 @@ const Home = () => {
       name: "Mark Greiner",
       role: "Digital Innovation Manager",
       company: "Merck",
-      quote: "Excellence and speed. It's rare to get both, and Netguru delivers.",
+      quote: "Excellence and speed. It's rare to get both, and FreekiWebsite delivers.",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face"
     },
     {
       name: "Adi Pavlovic",
       role: "Director of Innovation",
       company: "Keller Williams",
-      quote: "Netguru has been the best agency we've worked with so far.",
+      quote: "FreekiWebsite has been the best agency we've worked with so far.",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face"
     },
     {
@@ -104,8 +105,18 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-900 to-black section-padding">
-        <div className="container-custom">
+      <section className="relative h-screen flex items-center justify-center text-center">
+        <video
+          autoPlay
+          loop
+          muted
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        >
+          <source src="/assets/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-60 z-10"></div>
+        <div className="container-custom relative z-20">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
               <span className="gradient-text">Accelerate</span> digital
@@ -141,7 +152,13 @@ const Home = () => {
       </section>
 
       {/* Case Studies Section */}
-      <section className="section-padding bg-black">
+      <motion.section 
+        className="section-padding bg-black"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -178,10 +195,16 @@ const Home = () => {
             </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Services Process Section */}
-      <section className="section-padding bg-gray-900">
+      <motion.section 
+        className="section-padding bg-gray-900"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -210,10 +233,16 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Testimonials Section */}
-      <section className="section-padding bg-black">
+      <motion.section 
+        className="section-padding bg-black"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -241,10 +270,16 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Stats Section */}
-      <section className="section-padding bg-gray-900 text-white">
+      <motion.section 
+        className="section-padding bg-gray-900 text-white"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -266,10 +301,16 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Clients Section */}
-      <section className="section-padding bg-black">
+      <motion.section 
+        className="section-padding bg-black"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -290,10 +331,16 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-r from-gray-900 to-black text-white">
+      <motion.section 
+        className="section-padding bg-gradient-to-r from-gray-900 to-black text-white"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Build impactful products <span className="text-yellow-400">faster</span> than your competition
@@ -302,7 +349,7 @@ const Home = () => {
             Estimate project
           </Link>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

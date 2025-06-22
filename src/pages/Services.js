@@ -108,62 +108,48 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-netguru-light to-white section-padding">
+      <section className="bg-gradient-to-br from-gray-900 to-black section-padding">
         <div className="container-custom">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-netguru-dark mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
               Our <span className="gradient-text">Services</span>
             </h1>
-            <p className="text-xl md:text-2xl text-netguru-gray mb-8">
-              From ideation to maintenance, we provide end-to-end digital product development services to help you succeed in the digital age.
+            <p className="text-xl md:text-2xl text-gray-300 mb-8">
+              We provide end-to-end digital product development services to help you scale, innovate, and get ahead of the competition.
             </p>
           </div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-black">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {services.map((service, index) => (
-              <div key={index} className="group cursor-pointer">
-                <div className="relative overflow-hidden rounded-xl mb-6">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                  <div className="absolute top-4 left-4">
-                    <div className="w-12 h-12 bg-netguru-blue rounded-lg flex items-center justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <div key={service.title} className="group cursor-pointer bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border border-gray-800">
+                <div className="p-8">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
                       <service.icon className="w-6 h-6 text-white" />
                     </div>
+                    <ArrowRight className="w-6 h-6 text-gray-600 group-hover:text-white transition-colors" />
                   </div>
-                </div>
-                
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-netguru-dark group-hover:text-netguru-blue transition-colors">
+                  <h3 className="text-2xl font-bold text-white group-hover:text-gray-300 transition-colors mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-lg text-netguru-gray">
-                    {service.description}
-                  </p>
-                  
+                  <p className="text-gray-400 mb-6">{service.description}</p>
                   <ul className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-netguru-gray">
-                        <div className="w-2 h-2 bg-netguru-blue rounded-full mr-3"></div>
+                    {service.features.slice(0, 2).map((feature, index) => (
+                      <li key={index} className="flex items-center text-gray-300">
+                        <div className="w-2 h-2 bg-white rounded-full mr-3"></div>
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  
-                  <Link 
-                    to={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="inline-flex items-center text-netguru-blue hover:text-blue-600 font-semibold group/link"
-                  >
-                    Learn more
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" />
+                </div>
+                <div className="p-6 bg-black">
+                  <Link to={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`} className="font-semibold text-white hover:text-gray-300 transition-colors inline-flex items-center space-x-2">
+                    <span>Explore {service.title}</span>
                   </Link>
                 </div>
               </div>
@@ -172,92 +158,101 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="section-padding bg-netguru-light">
+      {/* How We Work Section */}
+      <section className="section-padding bg-gray-900">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-netguru-dark mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Our <span className="gradient-text">Process</span>
             </h2>
-            <p className="text-xl text-netguru-gray max-w-3xl mx-auto">
-              We follow a proven methodology that ensures successful delivery of your digital products.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Our agile and collaborative process ensures we deliver high-quality digital products on time and within budget.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            {[
-              { number: "01", title: "Discovery", desc: "Understand your needs and objectives" },
-              { number: "02", title: "Planning", desc: "Define scope, timeline, and deliverables" },
-              { number: "03", title: "Design", desc: "Create user-centered design solutions" },
-              { number: "04", title: "Development", desc: "Build your product with best practices" },
-              { number: "05", title: "Launch", desc: "Deploy and maintain your solution" }
-            ].map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-netguru-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white font-bold text-xl">{step.number}</span>
+          <div className="relative">
+            <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-8 w-1 bg-gray-700 h-full"></div>
+            
+            <div className="space-y-16 lg:space-y-0">
+              {[
+                { phase: "Discovery", title: "Understand your needs and objectives", desc: "We start by understanding your business goals and objectives." },
+                { phase: "Planning", title: "Define scope, timeline, and deliverables", desc: "We work with you to define the project scope, timeline, and deliverables." },
+                { phase: "Design", title: "Create user-centered design solutions", desc: "We design solutions that are user-centered and meet your business needs." },
+                { phase: "Development", title: "Build your product with best practices", desc: "We build your product using the latest technologies and best practices." },
+                { phase: "Launch", title: "Deploy and maintain your solution", desc: "We deploy and maintain your solution to ensure it meets your business needs." }
+              ].map((step, index) => (
+                <div key={index} className="flex flex-col lg:flex-row items-center gap-8">
+                  <div className={`lg:w-1/2 ${index % 2 !== 0 ? 'lg:order-2 lg:text-left' : 'lg:text-right'}`}>
+                    <div className="lg:inline-block lg:max-w-md">
+                      <span className="text-sm font-semibold text-yellow-400 mb-2 block">{step.phase}</span>
+                      <h3 className="text-2xl font-bold text-white mb-3">{step.title}</h3>
+                      <p className="text-gray-300">{step.desc}</p>
+                    </div>
+                  </div>
+                  <div className="relative lg:w-auto">
+                    <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4 lg:mb-0 z-10 relative border-4 border-gray-900">
+                      {index % 2 === 0 ? <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-xl">{index + 1}</span>
+                      </div> : null}
+                    </div>
+                  </div>
+                  <div className={`lg:w-1/2 ${index % 2 !== 0 ? 'lg:order-1' : ''}`}></div>
                 </div>
-                <h3 className="text-xl font-bold text-netguru-dark mb-2">{step.title}</h3>
-                <p className="text-netguru-gray">{step.desc}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Case Studies Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-black">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-netguru-dark mb-6">
-              Success <span className="gradient-text">Stories</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Our <span className="gradient-text">Work</span>
             </h2>
-            <p className="text-xl text-netguru-gray max-w-3xl mx-auto">
-              See how our services have helped clients achieve remarkable results.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Check out some of our recent projects to see the tangible results we've delivered for our clients.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {caseStudies.map((study, index) => (
-              <div key={index} className="group cursor-pointer">
-                <div className="relative overflow-hidden rounded-xl mb-4">
-                  <img
-                    src={study.image}
-                    alt={study.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {caseStudies.map((study) => (
+              <div key={study.company} className="group cursor-pointer bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border border-gray-800">
+                <div className="relative overflow-hidden">
+                  <img src={study.image} alt={study.title} className="w-full h-56 object-cover" />
+                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
                 </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-netguru-blue font-semibold">{study.company}</p>
-                  <h3 className="text-xl font-bold text-netguru-dark group-hover:text-netguru-blue transition-colors">
+                <div className="p-6">
+                  <p className="text-sm text-yellow-400 font-semibold mb-2">{study.company}</p>
+                  <h3 className="text-2xl font-bold text-white group-hover:text-gray-300 transition-colors mb-3">
                     {study.title}
                   </h3>
-                  <p className="text-netguru-gray font-semibold">{study.result}</p>
+                  <p className="text-4xl font-bold text-white mb-1">{study.result}</p>
+                  <p className="text-gray-400">{study.resultDesc}</p>
                 </div>
               </div>
             ))}
           </div>
-
           <div className="text-center mt-12">
-            <Link to="/clients" className="btn-secondary inline-flex items-center space-x-2">
-              <span>View all case studies</span>
-              <ArrowRight className="w-4 h-4" />
+            <Link to="/clients" className="btn-primary text-lg px-8 py-4">
+              Explore more case studies
             </Link>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-r from-netguru-blue to-blue-600 text-white">
+      <section className="section-padding bg-gradient-to-r from-gray-900 to-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to start your <span className="text-yellow-300">project</span>?
+            Let's build something <span className="text-yellow-400">amazing</span> together
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Let's discuss how our services can help you achieve your digital goals.
+            Ready to discuss your project? Get in touch with our experts for a free consultation.
           </p>
-          <Link to="/contact" className="btn-secondary bg-white text-netguru-blue hover:bg-gray-100 text-lg px-8 py-4">
-            Get in touch
+          <Link to="/contact" className="btn-secondary bg-white text-black hover:bg-gray-100 text-lg px-8 py-4">
+            Start a project
           </Link>
         </div>
       </section>

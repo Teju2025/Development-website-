@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Clock, Users, TrendingUp } from 'lucide-react';
+import { ArrowRight, Star, Clock, Users } from 'lucide-react';
 
 const Clients = () => {
   const featuredCaseStudies = [
@@ -116,7 +116,7 @@ const Clients = () => {
       name: "Mark Greiner",
       role: "Digital Innovation Manager",
       company: "Merck",
-      quote: "Excellence and speed. It's rare to get both, and Netguru delivers.",
+      quote: "Excellence and speed. It's rare to get both, and FreekiWebsite delivers.",
       rating: 5,
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face"
     },
@@ -124,7 +124,7 @@ const Clients = () => {
       name: "Adi Pavlovic",
       role: "Director of Innovation",
       company: "Keller Williams",
-      quote: "Netguru has been the best agency we've worked with so far.",
+      quote: "FreekiWebsite has been the best agency we've worked with so far.",
       rating: 5,
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face"
     },
@@ -148,13 +148,13 @@ const Clients = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-netguru-light to-white section-padding">
+      <section className="bg-gradient-to-br from-gray-900 to-black section-padding">
         <div className="container-custom">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-netguru-dark mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
               Our <span className="gradient-text">Clients</span>
             </h1>
-            <p className="text-xl md:text-2xl text-netguru-gray mb-8">
+            <p className="text-xl md:text-2xl text-gray-300 mb-8">
               Discover how we've helped companies across industries achieve remarkable results through innovative digital solutions.
             </p>
           </div>
@@ -162,12 +162,12 @@ const Clients = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="section-padding bg-netguru-dark text-white">
+      <section className="section-padding bg-gray-900 text-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-netguru-blue mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                   {stat.value}
                 </div>
                 <p className="text-gray-300">{stat.label}</p>
@@ -178,10 +178,10 @@ const Clients = () => {
       </section>
 
       {/* Featured Case Studies */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-black">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-netguru-dark mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Featured <span className="gradient-text">Case Studies</span>
             </h2>
           </div>
@@ -200,43 +200,43 @@ const Clients = () => {
                 
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <p className="text-sm text-netguru-blue font-semibold">{study.category}</p>
-                    <h3 className="text-3xl font-bold text-netguru-dark">{study.title}</h3>
-                    <p className="text-lg text-netguru-gray">{study.subtitle}</p>
+                    <p className="text-sm text-white font-semibold">{study.category}</p>
+                    <h3 className="text-3xl font-bold text-white">{study.title}</h3>
+                    <p className="text-lg text-gray-300">{study.subtitle}</p>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-netguru-blue rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">{study.company.charAt(0)}</span>
+                      <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                        <span className="text-black font-bold text-sm">{study.company.charAt(0)}</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-netguru-dark">{study.company}</p>
-                        <p className="text-sm text-netguru-gray">{study.industry}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Clock className="w-5 h-5 text-netguru-blue" />
-                      <div>
-                        <p className="font-semibold text-netguru-dark">{study.duration}</p>
-                        <p className="text-sm text-netguru-gray">Duration</p>
+                        <p className="font-semibold text-white">{study.company}</p>
+                        <p className="text-sm text-gray-400">{study.industry}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Users className="w-5 h-5 text-netguru-blue" />
+                      <Clock className="w-5 h-5 text-white" />
                       <div>
-                        <p className="font-semibold text-netguru-dark">{study.team}</p>
-                        <p className="text-sm text-netguru-gray">Team size</p>
+                        <p className="font-semibold text-white">{study.duration}</p>
+                        <p className="text-sm text-gray-400">Duration</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Users className="w-5 h-5 text-white" />
+                      <div>
+                        <p className="font-semibold text-white">{study.team}</p>
+                        <p className="text-sm text-gray-400">Team size</p>
                       </div>
                     </div>
                   </div>
                   
                   <div>
-                    <h4 className="font-semibold text-netguru-dark mb-3">Key Results:</h4>
+                    <h4 className="font-semibold text-white mb-3">Key Results:</h4>
                     <ul className="space-y-2">
                       {study.results.map((result, index) => (
-                        <li key={index} className="flex items-center text-netguru-gray">
-                          <div className="w-2 h-2 bg-netguru-blue rounded-full mr-3"></div>
+                        <li key={index} className="flex items-center text-gray-300">
+                          <div className="w-2 h-2 bg-white rounded-full mr-3"></div>
                           {result}
                         </li>
                       ))}
@@ -258,42 +258,42 @@ const Clients = () => {
       </section>
 
       {/* All Case Studies Grid */}
-      <section className="section-padding bg-netguru-light">
+      <section className="section-padding bg-gray-900">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-netguru-dark mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               More <span className="gradient-text">Success Stories</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {allCaseStudies.map((study) => (
-              <div key={study.id} className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+              <div key={study.id} className="group cursor-pointer bg-black rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border border-gray-800">
                 <div className="relative overflow-hidden">
                   <img
                     src={study.image}
                     alt={study.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                 </div>
                 <div className="p-6 space-y-4">
                   <div className="space-y-2">
-                    <p className="text-sm text-netguru-blue font-semibold">{study.category}</p>
-                    <h3 className="text-xl font-bold text-netguru-dark group-hover:text-netguru-blue transition-colors">
+                    <p className="text-sm text-white font-semibold">{study.category}</p>
+                    <h3 className="text-xl font-bold text-white group-hover:text-gray-300 transition-colors">
                       {study.title}
                     </h3>
-                    <p className="text-netguru-gray">{study.subtitle}</p>
+                    <p className="text-gray-400">{study.subtitle}</p>
                   </div>
                   
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 bg-netguru-blue rounded flex items-center justify-center">
-                        <span className="text-white font-bold text-xs">{study.company.charAt(0)}</span>
+                      <div className="w-6 h-6 bg-white rounded flex items-center justify-center">
+                        <span className="text-black font-bold text-xs">{study.company.charAt(0)}</span>
                       </div>
-                      <span className="text-sm font-semibold text-netguru-dark">{study.company}</span>
+                      <span className="text-sm font-semibold text-white">{study.company}</span>
                     </div>
-                    <span className="text-sm text-netguru-gray">{study.industry}</span>
+                    <span className="text-sm text-gray-400">{study.industry}</span>
                   </div>
                 </div>
               </div>
@@ -303,17 +303,17 @@ const Clients = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-black">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-netguru-dark mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Client <span className="gradient-text">Testimonials</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-netguru-light p-8 rounded-xl">
+              <div key={index} className="bg-gray-900 p-8 rounded-xl border border-gray-800">
                 <div className="flex items-center mb-4">
                   <img
                     src={testimonial.avatar}
@@ -321,9 +321,9 @@ const Clients = () => {
                     className="w-12 h-12 rounded-full mr-4"
                   />
                   <div>
-                    <h4 className="font-semibold text-netguru-dark">{testimonial.name}</h4>
-                    <p className="text-sm text-netguru-gray">{testimonial.role}</p>
-                    <p className="text-sm font-semibold text-netguru-blue">{testimonial.company}</p>
+                    <h4 className="font-semibold text-white">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-400">{testimonial.role}</p>
+                    <p className="text-sm font-semibold text-white">{testimonial.company}</p>
                   </div>
                 </div>
                 <div className="flex items-center mb-4">
@@ -331,7 +331,7 @@ const Clients = () => {
                     <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-netguru-dark italic">"{testimonial.quote}"</p>
+                <p className="text-gray-300 italic">"{testimonial.quote}"</p>
               </div>
             ))}
           </div>
@@ -339,15 +339,15 @@ const Clients = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-r from-netguru-blue to-blue-600 text-white">
+      <section className="section-padding bg-gradient-to-r from-gray-900 to-black text-white">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to join our <span className="text-yellow-300">success stories</span>?
+            Ready to join our <span className="text-yellow-400">success stories</span>?
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Let's discuss how we can help you achieve similar results for your business.
           </p>
-          <Link to="/contact" className="btn-secondary bg-white text-netguru-blue hover:bg-gray-100 text-lg px-8 py-4">
+          <Link to="/contact" className="btn-secondary bg-white text-black hover:bg-gray-100 text-lg px-8 py-4">
             Start your project
           </Link>
         </div>

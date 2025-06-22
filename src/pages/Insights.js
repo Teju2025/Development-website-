@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, User, Clock, Tag } from 'lucide-react';
+import { ArrowRight, Calendar, User, Clock } from 'lucide-react';
 
 const Insights = () => {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
   const featuredPosts = [
     {
       id: 1,
@@ -144,100 +146,83 @@ const Insights = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-netguru-light to-white section-padding">
+      <section className="bg-gradient-to-br from-gray-900 to-black section-padding">
         <div className="container-custom">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-netguru-dark mb-6">
-              Insights & <span className="gradient-text">Thought Leadership</span>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              FreekiWebsite <span className="gradient-text">Insights</span>
             </h1>
-            <p className="text-xl md:text-2xl text-netguru-gray mb-8">
-              Stay ahead of the curve with our latest insights, trends, and expert perspectives on technology and digital innovation.
+            <p className="text-xl md:text-2xl text-gray-300 mb-8">
+              Explore our latest articles, expert opinions, and in-depth analysis on technology, design, and business.
             </p>
           </div>
         </div>
       </section>
 
       {/* Featured Posts */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-black">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-netguru-dark mb-6">
-              Featured <span className="gradient-text">Articles</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Featured <span className="gradient-text">Post</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {featuredPosts.map((post) => (
-              <div key={post.id} className="group cursor-pointer">
-                <div className="relative overflow-hidden rounded-xl mb-6">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-netguru-blue text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      {post.category}
-                    </span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative overflow-hidden rounded-xl">
+              <img
+                src={featuredPosts[0].image}
+                alt={featuredPosts[0].title}
+                className="w-full h-[400px] object-cover"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <span className="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold">
+                  {featuredPosts[0].category}
+                </span>
+                <h3 className="text-4xl font-bold text-white">
+                  {featuredPosts[0].title}
+                </h3>
+                <div className="flex items-center space-x-4 text-sm text-gray-400">
+                  <div className="flex items-center space-x-2">
+                    <img src={featuredPosts[0].author.avatar} alt={featuredPosts[0].author.name} className="w-8 h-8 rounded-full" />
+                    <span>{featuredPosts[0].author.name}</span>
                   </div>
-                </div>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4 text-sm text-netguru-gray">
-                    <div className="flex items-center space-x-1">
-                      <User className="w-4 h-4" />
-                      <span>{post.author}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{post.date}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{post.readTime}</span>
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-netguru-dark group-hover:text-netguru-blue transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-netguru-gray">{post.excerpt}</p>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag, index) => (
-                      <span key={index} className="bg-gray-100 text-netguru-gray px-2 py-1 rounded text-sm">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <Link 
-                    to={`/insights/blog/${post.id}`}
-                    className="inline-flex items-center text-netguru-blue hover:text-blue-600 font-semibold group/link"
-                  >
-                    Read more
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" />
-                  </Link>
+                  <span>•</span>
+                  <span>{featuredPosts[0].date}</span>
+                  <span>•</span>
+                  <span>{featuredPosts[0].readTime}</span>
                 </div>
               </div>
-            ))}
+              <p className="text-lg text-gray-300">{featuredPosts[0].excerpt}</p>
+              <Link
+                to={`/insights/${featuredPosts[0].id}`}
+                className="btn-primary inline-flex items-center space-x-2"
+              >
+                <span>Read more</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Categories Filter */}
-      <section className="section-padding bg-netguru-light">
+      <section className="section-padding bg-gray-900">
         <div className="container-custom">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category, index) => (
+          <div className="flex justify-center flex-wrap gap-4 mb-12">
+            {categories.map(category => (
               <button
-                key={index}
-                className={`px-6 py-3 rounded-full font-semibold transition-colors ${
-                  index === 0 
-                    ? 'bg-netguru-blue text-white' 
-                    : 'bg-white text-netguru-dark hover:bg-netguru-blue hover:text-white'
-                }`}
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-6 py-2 rounded-full font-semibold transition-colors
+                  ${selectedCategory === category
+                    ? 'bg-yellow-400 text-black'
+                    : 'bg-black text-white hover:bg-gray-800'
+                  }`}
               >
                 {category}
               </button>

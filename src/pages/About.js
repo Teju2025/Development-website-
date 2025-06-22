@@ -62,7 +62,7 @@ const About = () => {
     {
       name: "Anna Kowalski",
       role: "Senior Developer",
-      quote: "Working at Netguru has been an incredible journey. The culture of innovation and continuous learning keeps me motivated every day.",
+      quote: "Working at FreekiWebsite has been an incredible journey. The culture of innovation and continuous learning keeps me motivated every day.",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face"
     },
     {
@@ -74,7 +74,7 @@ const About = () => {
     {
       name: "Maria Garcia",
       role: "Project Manager",
-      quote: "Netguru's commitment to excellence and client success is what makes this company truly special.",
+      quote: "FreekiWebsite's commitment to excellence and client success is what makes this company truly special.",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face"
     }
   ];
@@ -82,13 +82,13 @@ const About = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-netguru-light to-white section-padding">
+      <section className="bg-gradient-to-br from-gray-900 to-black section-padding">
         <div className="container-custom">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-netguru-dark mb-6">
-              About <span className="gradient-text">Netguru</span>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              About <span className="gradient-text">FreekiWebsite</span>
             </h1>
-            <p className="text-xl md:text-2xl text-netguru-gray mb-8">
+            <p className="text-xl md:text-2xl text-gray-300 mb-8">
               We're a team of passionate technologists, designers, and innovators dedicated to helping businesses succeed in the digital age.
             </p>
           </div>

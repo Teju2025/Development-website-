@@ -18,8 +18,10 @@ module.exports = {
           800: '#1e293b',
           900: '#0f172a',
         },
-        netguru: {
+        freekiwebsite: {
           blue: '#000000',
+          'get-in-touch': '#334155',
+          'get-in-touch-hover': '#475569',
           dark: '#000000',
           gray: '#666666',
           light: '#111111',
@@ -29,6 +31,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        logo: ['Poppins', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

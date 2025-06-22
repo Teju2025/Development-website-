@@ -9,11 +9,14 @@ import Clients from './pages/Clients';
 import About from './pages/About';
 import Insights from './pages/Insights';
 import Contact from './pages/Contact';
+import ScrollToTop from './components/ScrollToTop';
+import ScrollToTopButton from './components/ScrollToTopButton';
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <ScrollToTop />
+      <div className="bg-black text-white">
         <Navbar />
         <main>
           <Routes>
@@ -27,6 +30,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <ScrollToTopButton />
       </div>
     </Router>
   );
